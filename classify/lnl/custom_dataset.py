@@ -105,6 +105,7 @@ def make_dataset(root=Path.db_root_dir('custom')):
     val_labels = np.array(val_labels)
     return train_paths, train_labels, val_paths, val_labels, None, None
 
+# 2分类
 def make_ds_dataset():
     CLASS2ID = {
         "bg": 0,
@@ -116,6 +117,7 @@ def make_ds_dataset():
     }
     return *Path.db_root_dir('ds_custom'), {"truck": 0, "freight_car": 1}
 
+# 6分类
 def make_ds_dataset():
     CLASS2ID = {
         "bg": 0,

@@ -300,7 +300,7 @@ def do_registration(weights, image_pairs, output_dir, show=False):
     matcher = matcher.to(DEVICE)
     matcher.eval()
 
-    for img_path0, img_path1 in tqdm.tqdm(image_pairs[:10]):
+    for img_path0, img_path1 in tqdm.tqdm(image_pairs):
         # img_path0 = f'/nasdata/private/zwlu/detection/Gaiic1/projects/data/mmdet/gaiic/GAIIC2024/test/rgb/00429.jpg'
         # img_path1 = f'/nasdata/private/zwlu/detection/Gaiic1/projects/data/mmdet/gaiic/GAIIC2024/test/tir/00429.jpg'
         match_and_draw(img_path0, img_path1, matcher)
@@ -333,7 +333,7 @@ def do_registration(weights, image_pairs, output_dir, show=False):
             plt.close()
 
 def get_image_pairs(image_root):
-    rgb_images = glob.glob(os.path.join(image_root, "rgb/00004.jpg"))
+    rgb_images = glob.glob(os.path.join(image_root, "rgb/*.jpg"))
     return [(i, i.replace("/rgb/", "/tir/")) for i in rgb_images]
 
 

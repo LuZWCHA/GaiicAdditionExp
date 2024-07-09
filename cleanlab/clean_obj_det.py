@@ -169,38 +169,38 @@ if __name__ == "__main__":
     )
     from cleanlab.object_detection.summary import visualize
 
-    # pred_mmdet = "/root/workspace/data/dual_mmdetection/mmdetection/0530_train_tta.pkl"
+    pred_mmdet = "/root/workspace/data/dual_mmdetection/mmdetection/0530_train_tta.pkl"
     label_coco = "projects/data/mmdet/gaiic/mix_all/merged_coco_new_vis_3cls.json"
+    
     save_path = "data/"
     
-    # conver2cleanlab(pred_mmdet, label_coco, save_path=save_path)
+    conver2cleanlab(pred_mmdet, label_coco, save_path=save_path)
 
-    # IMAGE_PATH = '/root/workspace/data/GAIIC2024/train_more/tir/'  # path to raw image files downloaded above
-    # predictions = pickle.load(open(os.path.join(save_path, "predictions.pkl"), "rb"))
+    IMAGE_PATH = '/root/workspace/data/GAIIC2024/train_more/tir/'  # path to raw image files downloaded above
+    predictions = pickle.load(open(os.path.join(save_path, "predictions.pkl"), "rb"))
     labels = pickle.load(open(os.path.join(save_path, "labels.pkl"), "rb"))
-    # print(predictions[0])
-    # print(labels[0])
-    # print("-" * 100)
-    # print("find issues ...")
-    # print(len(labels), len(predictions))
-    # num_examples_to_show = 5
+    print(predictions[0])
+    print(labels[0])
+    print("-" * 100)
+    print("find issues ...")
+    print(len(labels), len(predictions))
+    num_examples_to_show = 5
 
-    ##########################################
-    # label_issue_idx = find_label_issues(labels, predictions, return_indices_ranked_by_score=True, overlapping_label_check=True)
+    #########################################
+    label_issue_idx = find_label_issues(labels, predictions, return_indices_ranked_by_score=True, overlapping_label_check=True)
 
-    # print(f"issue index number: {len(label_issue_idx)}")
+    print(f"issue index number: {len(label_issue_idx)}")
 
-    # print("-" * 100)
-    # print("get quality scores ...")
-    # scores = get_label_quality_scores(labels, predictions)
+    print("-" * 100)
+    print("get quality scores ...")
+    scores = get_label_quality_scores(labels, predictions)
 
+    issue_idx = issues_from_scores(scores, threshold=0.5)  # lower threshold will return fewer (but more confident) label issues
+    # issue_idx[:num_examples_to_show], scores[issue_idx][:num_examples_to_show]
+    pickle.dump(scores, open("data/scores.pkl", "wb"))
+    pickle.dump(issue_idx, open("data/issue_idx.pkl", "wb"))
 
-    # issue_idx = issues_from_scores(scores, threshold=0.5)  # lower threshold will return fewer (but more confident) label issues
-    # # issue_idx[:num_examples_to_show], scores[issue_idx][:num_examples_to_show]
-    # pickle.dump(scores, open("/root/workspace/data/cleanlab/data/scores.pkl", "wb"))
-    # pickle.dump(issue_idx, open("/root/workspace/data/cleanlab/data/issue_idx.pkl", "wb"))
-
-    ####################################
+    ###################################
 
     scores = pickle.load(open("data/scores.pkl", "rb"))
     issue_idx = pickle.load(open("data/issue_idx.pkl", "rb"))

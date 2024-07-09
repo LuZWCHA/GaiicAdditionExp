@@ -126,3 +126,7 @@ mmpretrain
 *.pth
 *.py~
 *.sh~
+compare_weights.py
+copy_files.py
+install_env.sh
+dinovit_convert_dict.json
