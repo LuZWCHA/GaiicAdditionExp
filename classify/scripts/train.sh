@@ -1,0 +1,13 @@
+python train.py \
+    -train data/train.json \
+    -val data/val.json \
+    -e ViT_B_Vehicle_c6_v2 \
+    --task_name ViT_B_Vehicle_c6_v2 \
+    --num_class 6 \
+    --num_epoch 100 \
+    --num_worker 16 \
+    --batch_size 1024 \
+    --save_interval 4 \
+    --lr 5e-5 \
+    --evaluate_first \
+    --amp

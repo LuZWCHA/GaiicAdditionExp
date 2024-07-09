@@ -1,0 +1,17 @@
+python train.py \
+    -train data/train_c2.json \
+    -val data/val_c2.json \
+    -e ViT_B_Vehicle_c2_NL \
+    --task_name ViT_B_Vehicle_c2_NL \
+    --num_class 2 \
+    --class_names "truck" "freight_car" \
+    --num_epoch 100 \
+    --num_worker 16 \
+    --batch_size 1024 \
+    --save_interval 4 \
+    --eval_interval 1 \
+    --lr 5e-4 \
+    --evaluate_first \
+    --noise_ratio 0.2 \
+    --eva_start_epoch 0 \
+    --amp
