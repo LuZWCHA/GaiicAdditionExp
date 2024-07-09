@@ -27,8 +27,9 @@ conda install --yes --file requirements.txt
 我们采用的分类模型是 **torch** 原生```vit-base```模型。为了兼容双光数据我们进行了简单修改，模型文件位于```classify/models/dual_stream_vit.py```。
 #### 模型训练
 训练我们使用了Monai的transform模块，可以根据需要进行修改，所有的增广pipeline位于 ```classify/dataset/transforms/transforms.py```。
-3分类的训练脚本如下，根据之前生成的json文件替换对应从那数：
-``` shell
+
+3分类的训练脚本如下，根据之前生成的json文件替换对应参数：
+``` bash
 python train.py \
     -train data/train_c3.json \
     -val data/val_c3.json \
